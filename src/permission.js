@@ -16,6 +16,7 @@ router.beforeEach(async(to, from, next) => {
 
   // set page title
   document.title = getPageTitle(to.meta.title)
+	// document.title = "我是测试标题"
 
   // determine whether the user has logged in
   const hasToken = getToken()
@@ -56,8 +57,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-
-    if (whiteList.indexOf(to.path) !== -1) {
+    if (whiteList.indexOf(to.path) !== -1) { // 如果数组中找的元素不存在则返回 -1,不等于-1 表示在页面白名单内。
       // in the free login whitelist, go directly
       next()
     } else {

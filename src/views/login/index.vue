@@ -115,6 +115,8 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+				console.log('handleLogin疑似调用this.$router.push之中')
+				console.log(this.$route)
         const query = route.query
         if (query) {
           this.redirect = query.redirect
@@ -158,7 +160,11 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
+						 // console.log('handleLogin调用this.$router.push之前')
+						 //  console.log(this.$route)
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+							// console.log('handleLogin调用this.$router.push之后')
+							// console.log(this.$route)
               this.loading = false
             })
             .catch(() => {
